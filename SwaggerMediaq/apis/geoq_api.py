@@ -140,7 +140,7 @@ class GeoqApi(object):
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/geoq/sample_fovs_test'.replace('{format}', 'json')
+        resource_path = '/geoq/sample_fovs'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -189,7 +189,7 @@ class GeoqApi(object):
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/geoq/sample_videos_test'.replace('{format}', 'json')
+        resource_path = '/geoq/sample_videos'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}

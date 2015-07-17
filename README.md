@@ -1,74 +1,52 @@
-## Requirements.
+# Requirements.
 Python 2.7 and later.
 
-## Setuptools
+# Installation
 You can install the bindings via [Setuptools](http://pypi.python.org/pypi/setuptools).
 
 ```sh
 python setup.py install
 ```
-
 Or you can install from Github via pip:
 
 ```sh
-pip install git+https://github.com/geekerzp/SwaggerMediaq-python.git
-```
+pip install git+https://github.com/ubriela/mediaq-clipy.git
 
+# Tutorial
 To use the bindings, import the pacakge:
 
 ```python
-import SwaggerMediaq
+import SwaggerMediaq as sm
 ```
 
-## Manual Installation
-If you do not wish to use setuptools, you can download the latest release.
-Then, to use the bindings, import the package:
-
+Create geoq client api
 ```python
-import path.to.SwaggerMediaq-python.SwaggerMediaq
+geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api"))
 ```
 
-## Getting Started
-
-TODO
-
-## Documentation
-
-TODO
-
-## Tests
-
-(Make sure you are running it inside of a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
-
-You can run the tests in the current python platform:
-
-```sh
-$ make test
-[... magically installs dependencies and runs tests on your virtualenv]
-Ran 7 tests in 19.289s
-
-OK
+Returns a set of video locations in GEOJSON format (small sample data)
+```python
+print geoq.sample_videos()
 ```
-or
-
-```
-$ mvn integration-test -rf :PythonPetstoreClientTests
-Using 2195432783 as seed
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 37.594 s
-[INFO] Finished at: 2015-05-16T18:00:35+08:00
-[INFO] Final Memory: 11M/156M
-[INFO] ------------------------------------------------------------------------
-```
-If you want to run the tests in all the python platforms:
-
-```sh
-$ make test-all
-[... tox creates a virtualenv for every platform and runs tests inside of each]
-  py27: commands succeeded
-  py34: commands succeeded
-  congratulations :)
+Returns a set of video frames (of a particular video) in GEOJSON format (small sample data)
+```python
+print geoq.sample_fovs()
 ```
 
+Create geoq client with API key, replace KEY_VALUE by actual one
+```python
+geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api", "X-API-KEY", "KEY_VALUE"))
+```
+
+Returns a set of video locations
+```python
+print geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125)
+```
+
+Returns a set of video frames
+```python
+print geoq.video_metadata("jca1ptaaiz83_2015_1_16_Videotake_1421449431727.mp4")
+```
+
+# Test
+You can download test file here ./test/geoq_test.py
