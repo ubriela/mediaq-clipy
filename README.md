@@ -54,7 +54,7 @@ Returns a set of video frames
 
 http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/video_metadata?videoid=sydzjysc7s36_2014_4_15_Videotake_1397518537455.mp4&X-API-KEY=REAL_KEY
 ```python
-print geoq.video_metadata("jca1ptaaiz83_2015_1_16_Videotake_1421449431727.mp4")
+print geoq.video_metadata("sydzjysc7s36_2014_4_15_Videotake_1397518537455.mp4")
 ```
 
 # Test
