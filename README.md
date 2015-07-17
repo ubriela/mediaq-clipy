@@ -52,7 +52,7 @@ print geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nel
 
 Returns a set of video frames
 
-http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/video_metadata?videoid=sydzjysc7s36_2014_4_15_Videotake_1397518537455.mp4&X-API-KEY=8b51UFM2SlBltx3s6864eUO1zSoefeK5
+http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/video_metadata?videoid=sydzjysc7s36_2014_4_15_Videotake_1397518537455.mp4&X-API-KEY=REAL_KEY
 ```python
 print geoq.video_metadata("jca1ptaaiz83_2015_1_16_Videotake_1421449431727.mp4")
 ```
