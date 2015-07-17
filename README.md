@@ -26,6 +26,8 @@ geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api"))
 ```
 
 Returns a set of video locations in GEOJSON format (small sample data)
+
+http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/sample_videos
 ```python
 print geoq.sample_videos()
 ```
@@ -35,16 +37,22 @@ print geoq.sample_fovs()
 ```
 
 Create geoq client with API key, replace KEY_VALUE by actual one
+
+http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/sample_fovs
 ```python
 geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api", "X-API-KEY", "KEY_VALUE"))
 ```
 
 Returns a set of video locations
+
+http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
 ```python
 print geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125)
 ```
 
 Returns a set of video frames
+
+http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/video_metadata?videoid=sydzjysc7s36_2014_4_15_Videotake_1397518537455.mp4&X-API-KEY=8b51UFM2SlBltx3s6864eUO1zSoefeK5
 ```python
 print geoq.video_metadata("jca1ptaaiz83_2015_1_16_Videotake_1421449431727.mp4")
 ```
