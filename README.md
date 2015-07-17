@@ -11,6 +11,7 @@ Or you can install from Github via pip:
 
 ```sh
 pip install git+https://github.com/ubriela/mediaq-clipy.git
+```
 
 # Tutorial
 To use the bindings, import the pacakge:
