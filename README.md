@@ -33,12 +33,12 @@ print geoq.sample_videos()
 Returns a set of video frames (of a particular video) in GEOJSON format (small sample data)
 ```python
 print geoq.sample_fovs()
+# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/sample_fovs
 ```
 
 Create geoq client with API key, replace KEY_VALUE by actual one
 ```python
 geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api", "X-API-KEY", "KEY_VALUE"))
-# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/sample_fovs
 ```
 
 Returns a set of video locations
