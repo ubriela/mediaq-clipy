@@ -41,7 +41,7 @@ class GeoqApi(object):
             self.api_client = configuration.api_client
     
     
-    def rectangle_query(self, swlat, swlng, nelat, nelng, nelat, _from, to, **kwargs):
+    def rectangle_query(self, swlat, swlng, nelat, nelng, **kwargs):
         """
         Returns a set of videos
         Returns a set of video locations with corresponding time and link to mediaq
@@ -50,9 +50,8 @@ class GeoqApi(object):
         :param str swlng: South-West Longitude (required)
         :param str nelat: North-East Latitude (required)
         :param str nelng: North-East Longitude (required)
-        :param str nelat: North-East Latitude (required)
-        :param str _from: Start Time (required)
-        :param str to: End Time (required)
+        :param str startdate: Start Date 
+        :param str enddate: End Date 
         
         :return: str
         """
@@ -73,19 +72,7 @@ class GeoqApi(object):
         if nelng is None:
             raise ValueError("Missing the required parameter `nelng` when calling `rectangle_query`")
         
-        # verify the required parameter 'nelat' is set
-        if nelat is None:
-            raise ValueError("Missing the required parameter `nelat` when calling `rectangle_query`")
-        
-        # verify the required parameter '_from' is set
-        if _from is None:
-            raise ValueError("Missing the required parameter `_from` when calling `rectangle_query`")
-        
-        # verify the required parameter 'to' is set
-        if to is None:
-            raise ValueError("Missing the required parameter `to` when calling `rectangle_query`")
-        
-        all_params = ['swlat', 'swlng', 'nelat', 'nelng', 'nelat', '_from', 'to']
+        all_params = ['swlat', 'swlng', 'nelat', 'nelng', 'startdate', 'enddate']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
@@ -113,14 +100,11 @@ class GeoqApi(object):
         if 'nelng' in params:
             query_params['nelng'] = params['nelng']
         
-        if 'nelat' in params:
-            query_params['nelat'] = params['nelat']
+        if 'startdate' in params:
+            query_params['startdate'] = params['startdate']
         
-        if '_from' in params:
-            query_params['from'] = params['_from']
-        
-        if 'to' in params:
-            query_params['to'] = params['to']
+        if 'enddate' in params:
+            query_params['enddate'] = params['enddate']
         
         header_params = {}
         
