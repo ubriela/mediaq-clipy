@@ -51,7 +51,7 @@ print geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nel
 Returns a set of video locations that are captured within a time interval (startdate -> enddate)
 ```python
 geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125,startdate="2015-01-01 00:00:00",enddate="2016-01-01 00:00:00")
-# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?startdate=2015-01-01 2000:00:00&enddate=2016-01-01 00:00:00swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
+# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?startdate=2015-01-01 00:00:00&enddate=2016-01-01 00:00:00&swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
 ```
 
 Returns a set of video frames
