@@ -41,7 +41,7 @@ class GeoqApi(object):
             self.api_client = configuration.api_client
     
     
-    def rectangle_query(self, swlat, swlng, nelat, nelng, **kwargs):
+    def rectangle_query(self, swlat, swlng, nelat, nelng, nelat, _from, to, **kwargs):
         """
         Returns a set of videos
         Returns a set of video locations with corresponding time and link to mediaq
@@ -50,6 +50,9 @@ class GeoqApi(object):
         :param str swlng: South-West Longitude (required)
         :param str nelat: North-East Latitude (required)
         :param str nelng: North-East Longitude (required)
+        :param str nelat: North-East Latitude (required)
+        :param str _from: Start Time (required)
+        :param str to: End Time (required)
         
         :return: str
         """
@@ -70,7 +73,19 @@ class GeoqApi(object):
         if nelng is None:
             raise ValueError("Missing the required parameter `nelng` when calling `rectangle_query`")
         
-        all_params = ['swlat', 'swlng', 'nelat', 'nelng']
+        # verify the required parameter 'nelat' is set
+        if nelat is None:
+            raise ValueError("Missing the required parameter `nelat` when calling `rectangle_query`")
+        
+        # verify the required parameter '_from' is set
+        if _from is None:
+            raise ValueError("Missing the required parameter `_from` when calling `rectangle_query`")
+        
+        # verify the required parameter 'to' is set
+        if to is None:
+            raise ValueError("Missing the required parameter `to` when calling `rectangle_query`")
+        
+        all_params = ['swlat', 'swlng', 'nelat', 'nelng', 'nelat', '_from', 'to']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
@@ -97,6 +112,15 @@ class GeoqApi(object):
         
         if 'nelng' in params:
             query_params['nelng'] = params['nelng']
+        
+        if 'nelat' in params:
+            query_params['nelat'] = params['nelat']
+        
+        if '_from' in params:
+            query_params['from'] = params['_from']
+        
+        if 'to' in params:
+            query_params['to'] = params['to']
         
         header_params = {}
         
@@ -269,21 +293,21 @@ class GeoqApi(object):
         
         return response
         
-    def video_metadata(self, videoid, **kwargs):
+    def video_metadata(self, vid, **kwargs):
         """
         Returns a set of video frames
         Returns metadata of individual video frames, from which it is possible to construct geospatial features of a video such as it's trajectory and coverage.
 
-        :param str videoid: VideoId (required)
+        :param str vid: Hashed Video Id (required)
         
         :return: str
         """
         
-        # verify the required parameter 'videoid' is set
-        if videoid is None:
-            raise ValueError("Missing the required parameter `videoid` when calling `video_metadata`")
+        # verify the required parameter 'vid' is set
+        if vid is None:
+            raise ValueError("Missing the required parameter `vid` when calling `video_metadata`")
         
-        all_params = ['videoid']
+        all_params = ['vid']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
@@ -299,8 +323,8 @@ class GeoqApi(object):
         
         query_params = {}
         
-        if 'videoid' in params:
-            query_params['videoid'] = params['videoid']
+        if 'vid' in params:
+            query_params['vid'] = params['vid']
         
         header_params = {}
         
