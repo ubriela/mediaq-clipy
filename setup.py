@@ -19,7 +19,7 @@ setup(
     version="1.0.0",
     description="MediaQ API",
     author_email="mediaq.imsc@gmail.com",
-    url="http://mediaq.usc.edu",
+    url="http://local.eclipse.org",
     keywords=["Swagger", "MediaQ API"],
     install_requires=REQUIRES,
     packages=find_packages(),

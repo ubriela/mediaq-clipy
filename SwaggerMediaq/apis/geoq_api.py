@@ -334,6 +334,79 @@ class GeoqApi(object):
         
         return response
         
+    def video_segment_url(self, vid, start_frame, end_frame, **kwargs):
+        """
+        Returns an url to view video on mediaq
+        Returns an url to view video on mediaq.
+
+        :param str vid: Hashed Video Id (required)
+        :param int start_frame: Start Frame (required)
+        :param int end_frame: Start Frame (required)
+        
+        :return: str
+        """
+        
+        # verify the required parameter 'vid' is set
+        if vid is None:
+            raise ValueError("Missing the required parameter `vid` when calling `video_segment_url`")
+        
+        # verify the required parameter 'start_frame' is set
+        if start_frame is None:
+            raise ValueError("Missing the required parameter `start_frame` when calling `video_segment_url`")
+        
+        # verify the required parameter 'end_frame' is set
+        if end_frame is None:
+            raise ValueError("Missing the required parameter `end_frame` when calling `video_segment_url`")
+        
+        all_params = ['vid', 'start_frame', 'end_frame']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method video_segment_url" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/geoq/video_segment_url'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'vid' in params:
+            query_params['vid'] = params['vid']
+        
+        if 'start_frame' in params:
+            query_params['startFrame'] = params['start_frame']
+        
+        if 'end_frame' in params:
+            query_params['endFrame'] = params['end_frame']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'application/xml', 'text/html', 'text/xml'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type([])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='str', auth_settings=auth_settings)
+        
+        return response
+        
 
 
 

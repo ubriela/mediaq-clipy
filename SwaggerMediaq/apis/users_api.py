@@ -456,13 +456,16 @@ class UsersApi(object):
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/users/reset_password/reset/{ResetPassword}'.replace('{format}', 'json')
+        resource_path = '/users/reset_password/{reset}/{repeat_password}'.replace('{format}', 'json')
         method = 'PUT'
 
         path_params = {}
         
         if 'reset' in params:
             path_params['reset'] = params['reset']  
+        
+        if 'repeat_password' in params:
+            path_params['repeat_password'] = params['repeat_password']  
         
         query_params = {}
         
@@ -473,9 +476,6 @@ class UsersApi(object):
         
         if 'password' in params:
             form_params['password'] = params['password']
-        
-        if 'repeat_password' in params:
-            form_params['repeat_password'] = params['repeat_password']
         
         body_params = None
         
