@@ -22,7 +22,8 @@ import SwaggerMediaq as sm
 
 Create geoq client api
 ```python
-geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api"))
+url = "http://local.eclipse.org/MediaQ_MVC_V3/api"
+geoq = sm.GeoqApi(sm.ApiClient(url))
 ```
 
 Returns a set of video locations in GEOJSON format (small sample data)
@@ -38,7 +39,7 @@ print geoq.sample_fovs()
 
 Create geoq client with API key, replace KEY_VALUE by actual one
 ```python
-geoq = sm.GeoqApi(sm.ApiClient("http://mediaq.usc.edu/MediaQ_MVC_V3/api", "X-API-KEY", "KEY_VALUE"))
+geoq = sm.GeoqApi(sm.ApiClient(url, "X-API-KEY", "KEY_VALUE"))
 ```
 
 Returns a set of video locations
@@ -47,10 +48,10 @@ print geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nel
 # http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
 ```
 
-Returns a set of video locations that are captured within a time interval (from -> to)
+Returns a set of video locations that are captured within a time interval (startdate -> enddate)
 ```python
-print geoq.rectangle_query(from='2015-01-01 2000:00:00', to='2016-01-01 00:00:00'&swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125)
-# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?from=2015-01-01 2000:00:00&to=2016-01-01 00:00:00swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
+geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125,startdate="2015-01-01 00:00:00",enddate="2016-01-01 00:00:00")
+# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?startdate=2015-01-01 00:00:00&enddate=2016-01-01 00:00:00&swlat=34.019972&swlng=-118.291588&nelat=34.021111&nelng=-118.287125&X-API-KEY=REAL_KEY
 ```
 
 Returns a set of video frames
