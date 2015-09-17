@@ -22,10 +22,18 @@ geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-11
 
 # Returns a set of video locations that are captured within a time interval (startdate -> enddate)
 geoq.rectangle_query(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125,startdate="2015-01-01 00:00:00",enddate="2016-01-01 00:00:00")
-<<<<<<< HEAD
-# http://mediaq.usc.edu/MediaQ_MVC_V3/api/geoq/rectangle_query?swlng=-118.291588&nelat=34.021111&nelng=-118.287125&startdate=2015-01-01 2000:00:00&enddate=2016-01-01 00:00:00swlat=34.019972&X-API-KEY=REAL_KEY
-=======
->>>>>>> e1a85b20fb1637d0722da47cf06b73a3f7073c82
+
+# Return video coverage
+geoq.video_coverage(approximation="triangle",vid="a996bc1308e7e7f063da8d40660ec08fb50dd58a")
 
 # Returns a set of video frames
 geoq.video_metadata("d0a0163e5d852e70f87bdc8718166e42989306a5")
+
+# Rectangle Statistic
+geoq.rectangle_statistic(swlat=34.019972,swlng=-118.291588,nelat=34.021111,nelng=-118.287125,startdate="2015-01-01 00:00:00",enddate="2016-01-01 00:00:00")
+
+# Circle Statistic
+geoq.circle_statistic(lat=34.019972,lng=-118.291588,radius=100)
+
+# CellId to Videos
+geoq.cellid2videos(cellid="124020+61709")
