@@ -98,13 +98,14 @@ class GeoqApi(object):
         
         return response
         
-    def circle_statistic(self, lat, lng, **kwargs):
+    def circle_statistic(self, lat, lng, radius, **kwargs):
         """
         Heatmap information of a region
         Returns a set of cells with the number of video counts
 
         :param str lat: Latitude (required)
         :param str lng: Longitude (required)
+        :param str radius: Radius (required)
         :param str startdate: Start Date 
         :param str enddate: End Date 
         
@@ -119,7 +120,11 @@ class GeoqApi(object):
         if lng is None:
             raise ValueError("Missing the required parameter `lng` when calling `circle_statistic`")
         
-        all_params = ['lat', 'lng', 'startdate', 'enddate']
+        # verify the required parameter 'radius' is set
+        if radius is None:
+            raise ValueError("Missing the required parameter `radius` when calling `circle_statistic`")
+        
+        all_params = ['lat', 'lng', 'radius', 'startdate', 'enddate']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
@@ -140,6 +145,9 @@ class GeoqApi(object):
         
         if 'lng' in params:
             query_params['lng'] = params['lng']
+        
+        if 'radius' in params:
+            query_params['radius'] = params['radius']
         
         if 'startdate' in params:
             query_params['startdate'] = params['startdate']
@@ -212,6 +220,95 @@ class GeoqApi(object):
         del params['kwargs']
 
         resource_path = '/geoq/rectangle_query'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+        
+        query_params = {}
+        
+        if 'swlat' in params:
+            query_params['swlat'] = params['swlat']
+        
+        if 'swlng' in params:
+            query_params['swlng'] = params['swlng']
+        
+        if 'nelat' in params:
+            query_params['nelat'] = params['nelat']
+        
+        if 'nelng' in params:
+            query_params['nelng'] = params['nelng']
+        
+        if 'startdate' in params:
+            query_params['startdate'] = params['startdate']
+        
+        if 'enddate' in params:
+            query_params['enddate'] = params['enddate']
+        
+        header_params = {}
+        
+        form_params = {}
+        files = {}
+        
+        body_params = None
+        
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(['application/json', 'application/xml', 'text/html', 'text/xml'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type([])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method, path_params, query_params, header_params,
+                                            body=body_params, post_params=form_params, files=files,
+                                            response='str', auth_settings=auth_settings)
+        
+        return response
+        
+    def rectangle_query_bak(self, swlat, swlng, nelat, nelng, **kwargs):
+        """
+        Returns a set of videos
+        Returns a set of video locations with corresponding time and link to mediaq
+
+        :param str swlat: South-West Latitude (required)
+        :param str swlng: South-West Longitude (required)
+        :param str nelat: North-East Latitude (required)
+        :param str nelng: North-East Longitude (required)
+        :param str startdate: Start Date 
+        :param str enddate: End Date 
+        
+        :return: str
+        """
+        
+        # verify the required parameter 'swlat' is set
+        if swlat is None:
+            raise ValueError("Missing the required parameter `swlat` when calling `rectangle_query_bak`")
+        
+        # verify the required parameter 'swlng' is set
+        if swlng is None:
+            raise ValueError("Missing the required parameter `swlng` when calling `rectangle_query_bak`")
+        
+        # verify the required parameter 'nelat' is set
+        if nelat is None:
+            raise ValueError("Missing the required parameter `nelat` when calling `rectangle_query_bak`")
+        
+        # verify the required parameter 'nelng' is set
+        if nelng is None:
+            raise ValueError("Missing the required parameter `nelng` when calling `rectangle_query_bak`")
+        
+        all_params = ['swlat', 'swlng', 'nelat', 'nelng', 'startdate', 'enddate']
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError("Got an unexpected keyword argument '%s' to method rectangle_query_bak" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/geoq/rectangle_query_bak'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -585,30 +682,31 @@ class GeoqApi(object):
         
         return response
         
-    def video_metadata(self, vid, **kwargs):
+    def video_coverage(self, vid, **kwargs):
         """
         Returns a set of video frames
         Returns metadata of individual video frames, from which it is possible to construct geospatial features of a video such as it's trajectory and coverage.
 
         :param str vid: Hashed Video Id (required)
+        :param str approximation: Approximation method (approximation=triangle/mbr) 
         
         :return: str
         """
         
         # verify the required parameter 'vid' is set
         if vid is None:
-            raise ValueError("Missing the required parameter `vid` when calling `video_metadata`")
+            raise ValueError("Missing the required parameter `vid` when calling `video_coverage`")
         
-        all_params = ['vid']
+        all_params = ['vid', 'approximation']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method video_metadata" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method video_coverage" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/geoq/video_metadata'.replace('{format}', 'json')
+        resource_path = '/geoq/video_coverage'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
@@ -617,6 +715,9 @@ class GeoqApi(object):
         
         if 'vid' in params:
             query_params['vid'] = params['vid']
+        
+        if 'approximation' in params:
+            query_params['approximation'] = params['approximation']
         
         header_params = {}
         
@@ -642,7 +743,7 @@ class GeoqApi(object):
         
         return response
         
-    def video_metadata2(self, vid, **kwargs):
+    def video_metadata(self, vid, **kwargs):
         """
         Returns a set of video frames
         Returns metadata of individual video frames, from which it is possible to construct geospatial features of a video such as it's trajectory and coverage.
@@ -654,18 +755,18 @@ class GeoqApi(object):
         
         # verify the required parameter 'vid' is set
         if vid is None:
-            raise ValueError("Missing the required parameter `vid` when calling `video_metadata2`")
+            raise ValueError("Missing the required parameter `vid` when calling `video_metadata`")
         
         all_params = ['vid']
 
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method video_metadata2" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method video_metadata" % key)
             params[key] = val
         del params['kwargs']
 
-        resource_path = '/geoq/video_metadata2'.replace('{format}', 'json')
+        resource_path = '/geoq/video_metadata'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
